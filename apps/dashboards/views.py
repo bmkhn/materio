@@ -18,6 +18,11 @@ class DashboardsView(TemplateView):
     # Predefined function
     def get_context_data(self, **kwargs):
         context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+        context['locations_count'] = Locations.objects.count()
+        context['incidents_count'] = Incident.objects.count()
+        context['firefighters_count'] = Firefighters.objects.count()
+        context['firetrucks_count'] = FireTruck.objects.count()
+        context['weather_count'] = WeatherConditions.objects.count()
         return context
     
     def get_queryset(self, *args, **kwargs):
